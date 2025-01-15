@@ -1,0 +1,32 @@
+
+
+<%= link_to "Add New Product", new_product_path, class: "btn new-product-btn" %>
+
+
+
+<table class="products-table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Product Name</th>
+      <th>Price</th>
+      <th>Description</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @products.each do |product| %>
+      <tr>
+        <td><%= product.id %></td>
+        <td><%= product.product_name %></td>
+        <td><%= number_to_currency(product.price) %></td>
+        <td><%= truncate(product.description, length: 50) %></td>
+        <td>
+          <%= link_to 'Show', product_path(product), class: 'btn show-btn' %>
+          <%= link_to 'Edit', edit_product_path(product), class: 'btn edit-btn' %>
+          <%= link_to 'Delete', product_path(product), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn delete-btn' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
